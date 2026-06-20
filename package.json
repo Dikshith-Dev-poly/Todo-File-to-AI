@@ -1,0 +1,20 @@
+{
+  "name": "todo-v1",
+  "version": "1.0.0",
+  "description": "todo with txt file as database",
+  "homepage": "https://github.com/Dikshith-Dev-poly/Todo-File-to-AI#readme",
+  "bugs": {
+    "url": "https://github.com/Dikshith-Dev-poly/Todo-File-to-AI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dikshith-Dev-poly/Todo-File-to-AI.git"
+  },
+  "license": "ISC",
+  "author": "Dikshith",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

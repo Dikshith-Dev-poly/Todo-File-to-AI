@@ -2,6 +2,7 @@
 
 
 This is version 1 of todo project.Which uses text file as database.
+db folder and respective files are created automatically.
 
 Next-Use database
 

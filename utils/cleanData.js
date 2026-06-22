@@ -1,7 +1,10 @@
 
 // options= { delimiter, existValue } 
 function cleanData(data, options) {
-    const temp = data.split(options.delimiter || "\n");
+    let temp = data.split(options.delimiter || "\n");
+    temp = temp.map((d) => {
+        return d.replace("\r", "");
+    })
     const cleanedData = temp.filter((d) => {
         if (d.trim() === "" || d === options.existValue) {
             return false;

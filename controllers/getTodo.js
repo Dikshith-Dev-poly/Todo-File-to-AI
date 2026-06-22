@@ -1,10 +1,10 @@
 const { getData } = require("../services/todoService");
 
 function getTodo(req, res) {
-    const todo = getData();
+    const response = getData();
     res.status(200);
     res.type("application/json");
-    res.send(todo);
+    res.json(response);
 }
 
 module.exports = getTodo;

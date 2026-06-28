@@ -20,7 +20,7 @@ async function getTodo(page, limit = 20) {
 
 
         const skip = (page - 1) * limit;
-        const todos = await Todo.find().skip(skip).limit(limit).lean().select("t d c");
+        const todos = await Todo.find({ del: false }).skip(skip).limit(limit).lean().select("t d c");
         const result = todos.map((todo) => {
             return {
                 title: todo.t,

@@ -1,9 +1,9 @@
 import { Router } from "express";
-import home from "../controllers/home.controller";
-import getTodos from "../controllers/getTodo.controller";
-import createTodo from "../controllers/createTodo.controller";
-import updateTodo from "../controllers/updateTodo.controller";
-import deleteTodo from "../controllers/deleteTodo.controller";
+import home from "../controllers/home.controller.js";
+import getTodos from "../controllers/getTodo.controller.js";
+import createTodo from "../controllers/createTodo.controller.js";
+import updateTodo from "../controllers/updateTodo.controller.js";
+import deleteTodo from "../controllers/deleteTodo.controller.js";
 
 const route = Router();
 

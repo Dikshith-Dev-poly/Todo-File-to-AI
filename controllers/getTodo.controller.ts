@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import type { ApiResponse } from "../types/response";
+import type { ApiResponse } from "../types/response.js";
 
 const getTodos: RequestHandler = async (req, res) => {
     const response: ApiResponse = { success: true, message: "GET all TODO" };

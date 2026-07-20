@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import type { TodoInterface } from "../../types/todo.ts";
+import type { TodoInterface } from "../../types/todo.js";
 
 
 

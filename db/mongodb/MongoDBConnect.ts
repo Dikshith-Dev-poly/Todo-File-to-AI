@@ -1,5 +1,5 @@
 import { connect } from "mongoose"
-import env from "../../config/env.ts"
+import env from "../../config/env.js"
 
 
 const mongoOptions = { serverSelectionTimeoutMS: 1000, bufferCommands: false };

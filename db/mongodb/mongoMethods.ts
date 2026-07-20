@@ -1,4 +1,4 @@
-import type { dbMethod } from "../../types/dbMethodTypes.ts";
+import type { dbMethod } from "../../types/dbMethodTypes.js";
 
 
 

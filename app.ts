@@ -1,6 +1,6 @@
 import express, { type Request, type Response, type NextFunction } from "express";
-import todoRoute from "./routes/todo.routes.ts";
-import type { ApiResponse } from "./types/response.ts"
+import todoRoute from "./routes/todo.routes.js";
+import type { ApiResponse } from "./types/response.js"
 const app = express();
 
 

@@ -8,7 +8,8 @@
     "dev": "tsx watch server.ts",
     "generate": "npx drizzle-kit generate",
     "push": "npx drizzle-kit push",
-    "studio": "npx drizzle-kit studio"
+    "studio": "npx drizzle-kit studio",
+    "seed": "tsx ./db/seed.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

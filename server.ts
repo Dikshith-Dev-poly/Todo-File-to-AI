@@ -1,6 +1,6 @@
 import app from "./app.js";
 import env from "./config/env.js"
-import dbConnect from "./db/database.js";
+import dbConnect from "./db/dbConnect.js";
 
 
 const PORT = env.PORT;

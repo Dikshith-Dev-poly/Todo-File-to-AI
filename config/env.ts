@@ -11,16 +11,10 @@ const envSchema = z.object({
     POSTGRESQL_URL: z.url({ protocol: /postgresql/ }),
     MONGODB_URI: z.url({ protocol: /mongodb/ }),
     NODE_ENV: z.enum(["development", "production"]).default("development"),
+    LIMIT: z.coerce.number().int().min(1).default(10)
 })
 
 
-// const env = {
-//     PORT: process.env.PORT,
-//     DATABASE: process.env.DATABASE,
-//     POSTGRESQL_URL: process.env.POSTGRESQL_URL,
-//     MONGODB_URI: process.env.MONGODB_URI,
-//     NODE_ENV: process.env.NODE_ENV
-// }
 
 const parsedEnv = envSchema.safeParse(process.env);
 

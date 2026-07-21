@@ -7,7 +7,7 @@ interface ApiSuccess<T = unknown> {
 
 interface ApiError {
     success: false,
-    message: string
+    message: string,
 }
 
 

@@ -1,5 +1,4 @@
-import { Schema, model } from "mongoose";
-import type { TodoInterface } from "../../types/todo.js";
+import { Schema, model, type InferSchemaType, type HydratedDocument } from "mongoose";
 
 
 
@@ -11,5 +10,7 @@ const todoSchema = new Schema({
 }, { timestamps: true });
 
 
-const MongoTodo = model<TodoInterface>("Todo", todoSchema);
+export type todoType = InferSchemaType<typeof todoSchema>;
+export type hydratedTodo = HydratedDocument<todoType>
+const MongoTodo = model<todoType>("Todo", todoSchema);
 export default MongoTodo;

@@ -1,22 +1,20 @@
+import { sql } from "drizzle-orm";
 import env from "../config/env.js";
+import drizzledb from "./drizzle/drizzleConnect.js";
 import mongoDBConnect from "./mongodb/MongoDBConnect.js";
-import mongoMethods from "./mongodb/mongoMethods.js";
-import drizzleMethods from "./drizzle/drizzleMethods.js";
-
 
 const database = env.DATABASE;
 
 
-async function db() {
+async function dbConnect() {
     if (database === 'mongodb') {
         await mongoDBConnect();
-        return mongoMethods;
     } else if (database === "postgresql") {
-        return drizzleMethods;
+        await drizzledb.execute(sql`SELECT 1`);
     } else {
         throw new Error("Unknown Database");
     }
 }
 
-export default db;
+export default dbConnect;
 

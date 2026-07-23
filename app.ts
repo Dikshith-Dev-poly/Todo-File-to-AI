@@ -3,6 +3,7 @@ import todoRoute from "./routes/todo.routes.js";
 import type { ApiResponse } from "./types/response.js"
 const app = express();
 
+app.use(express.json());
 
 app.use("/api/v3/", todoRoute);
 

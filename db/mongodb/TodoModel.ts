@@ -1,4 +1,5 @@
-import { Schema, model, type InferSchemaType, type HydratedDocument } from "mongoose";
+import { Schema, model, type InferSchemaType, type HydratedDocument, Types } from "mongoose";
+import { z } from "zod";
 
 
 
@@ -13,4 +14,5 @@ const todoSchema = new Schema({
 export type todoType = InferSchemaType<typeof todoSchema>;
 export type hydratedTodo = HydratedDocument<todoType>
 const MongoTodo = model<todoType>("Todo", todoSchema);
+export const objectId = z.string().refine(id => Types.ObjectId.isValid(id), { error: "Invalid ID" });
 export default MongoTodo;

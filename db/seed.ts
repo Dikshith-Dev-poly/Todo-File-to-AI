@@ -12,4 +12,9 @@ async function seed() {
         console.log("Add postgresql");
     }
 }
-seed();
+
+if (env.NODE_ENV === "development") {
+    seed();
+} else {
+    console.log("Cannot seed database in production")
+}

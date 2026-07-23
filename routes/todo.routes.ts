@@ -9,10 +9,10 @@ const route = Router();
 
 
 route.get("/", home);
-route.get("/todos", getTodos);//filters,pagination
+route.get("/todos", getTodos);
 route.post("/todos", createTodo);
-route.patch("/todos/:id", updateTodo);//title,desc,priority,completed
-route.delete("/todos/:id", deleteTodo);//soft
+route.patch("/todos/:id", updateTodo);
+route.delete("/todos/:id", deleteTodo);
 
 
 

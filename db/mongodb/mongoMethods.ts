@@ -32,7 +32,7 @@ const mongoMethods: dbMethod = {
         const result = await MongoTodo.insertOne(data);
         return {
             data: {
-                title: result.title, description: result.description ?? null, priority: result.priority, completed: result.completed
+                id: String(result._id), title: result.title, description: result.description ?? null, priority: result.priority, completed: result.completed
             }
         }
     },

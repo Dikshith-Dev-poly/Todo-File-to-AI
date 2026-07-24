@@ -2,6 +2,7 @@ import type { RequestHandler } from "express";
 import { objectId } from "../db/mongodb/TodoModel.js";
 import z from "zod";
 import updateTodoService from "../services/updateTodo.service.js";
+import env from "../config/env.js";
 
 
 const updateSchema = z.object({
@@ -14,7 +15,12 @@ const updateSchema = z.object({
 export type updateType = z.infer<typeof updateSchema>;
 
 const updateTodo: RequestHandler = async (req, res) => {
-    const parseParam = objectId.safeParse(req.params.id);
+    let parseParam;
+    if (env.DATABASE === "mongodb") {
+        parseParam = objectId.safeParse(req.params.id);
+    } else {
+        parseParam = z.uuid().safeParse(req.params.id);
+    }
     if (!parseParam.success) {
         return res.status(400).json({
             success: false, message: "Invalid id"

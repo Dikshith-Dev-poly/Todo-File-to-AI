@@ -1,12 +1,11 @@
 
 import getDbMethods from "../db/dbMethods.js";
-import type { todoType } from "../db/mongodb/TodoModel.js";
 import type { getOptionsT } from "../services/getTodo.service.js";
 import type { getDataT } from "../types/dbMethodTypes.js";
 
 const methods = getDbMethods()
 
-export default async function getTodoRepo(dbQueryOptions: getOptionsT): Promise<getDataT<todoType>> {
+export default async function getTodoRepo(dbQueryOptions: getOptionsT): Promise<getDataT<unknown>> {
     if ("completed" in dbQueryOptions && "priority" in dbQueryOptions) {
         const comp = dbQueryOptions.completed === "true" ? true : false;
         return await methods.getByCompletedAndPriority(dbQueryOptions.limit, dbQueryOptions.skip, comp, (dbQueryOptions.priority || "low"));

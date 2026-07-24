@@ -10,7 +10,7 @@ const envSchema = z.object({
     DATABASE: z.enum(["mongodb", "postgresql"]).default("mongodb"),
     POSTGRESQL_URL: z.url({ protocol: /postgresql/ }),
     MONGODB_URI: z.url({ protocol: /mongodb/ }),
-    NODE_ENV: z.enum(["development", "production"]).default("development"),
+    NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
     LIMIT: z.coerce.number().int().min(1).default(10)
 })
 

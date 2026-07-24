@@ -1,8 +1,6 @@
 import type { QueryOptions } from "../controllers/getTodo.controller.js";
 import env from "../config/env.js";
 import getTodoRepo from "../repositories/getTodoRepo.js";
-import type { getDataT } from "../types/dbMethodTypes.js";
-import type { todoType } from "../db/mongodb/TodoModel.js";
 
 export interface getOptionsT {
     page: number,

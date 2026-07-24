@@ -1,9 +1,16 @@
 import type { RequestHandler } from "express";
 import { objectId } from "../db/mongodb/TodoModel.js";
 import deleteTodoService from "../services/deleteTodo.service.js";
+import env from "../config/env.js";
+import { z } from "zod";
 
 const deleteTodo: RequestHandler = async (req, res) => {
-    const parseId = objectId.safeParse(req.params.id);
+    let parseId;
+    if (env.DATABASE === "mongodb") {
+        parseId = objectId.safeParse(req.params.id);
+    } else {
+        parseId = z.uuid().safeParse(req.params.id);
+    }
     if (!parseId.success) {
         return res.status(400).json({ success: false, message: "Invalid id" });
     }

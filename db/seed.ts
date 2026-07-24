@@ -1,20 +1,19 @@
 
 import env from "../config/env.js"
+import seedDrizzle from "./drizzle/seedDrizzle.js";
 import seedMongo from "./mongodb/seedMongo.js";
 
 const database = env.DATABASE;
 
 
-async function seed() {
+export default async function seed() {
     if (database === "mongodb") {
         await seedMongo();
     } else {
-        console.log("Add postgresql");
+        await seedDrizzle();
     }
 }
 
 if (env.NODE_ENV === "development") {
     seed();
-} else {
-    console.log("Cannot seed database in production")
 }

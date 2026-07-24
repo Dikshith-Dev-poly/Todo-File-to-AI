@@ -45,7 +45,10 @@ const drizzleMethods: dbMethod = {
         return { data: result };
     },
     deleteTodo: async (id) => {
-        await drizzledb.delete(DrizzleTodo).where(eq(DrizzleTodo.id, id));
+        const [result] = await drizzledb.delete(DrizzleTodo).where(eq(DrizzleTodo.id, id)).returning({ title: DrizzleTodo.title });
+        if (!result) {
+            throw new Error("Invalid id");
+        }
     }
 }
 

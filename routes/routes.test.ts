@@ -4,6 +4,9 @@ import app from "../app.js";
 import dbConnect from "../db/dbConnect.js";
 import env from "../config/env.js";
 import seed from "../db/seed.js";
+import mongoose from "mongoose";
+const crypto = require('node:crypto');
+
 
 beforeAll(async () => {
     await seed();
@@ -144,6 +147,13 @@ describe("Update request", () => {
             expect(updateResult.body.success).toBe(false);
             expect(updateResult.body.message).toBe("Invalid id");
         })
+        const id = (env.DATABASE === "mongodb") ? new mongoose.Types.ObjectId().toString() : crypto.randomUUID();
+        test("Invalid id-404", async () => {
+            const updateResult = await request(app).patch(url + `/${id}`).send({ title: "updated" });
+            expect(updateResult.statusCode).toBe(404);
+            expect(updateResult.body.success).toBe(false);
+            expect(updateResult.body.message).toBe("Invalid id");
+        })
     })
 })
 
@@ -151,18 +161,25 @@ describe("Delete request", () => {
     describe("Success", async () => {
         test("Delete todo", async () => {
             const result = await request(app).post(url).send({ title: "Hello" });
-            const updateResult = await request(app).delete(url + `/${result.body.data.data.id}`);
-            expect(updateResult.statusCode).toBe(200);
-            expect(updateResult.body.success).toBe(true);
-            expect(updateResult.body.message).toBe("Deleted successfully");
+            const deleteResult = await request(app).delete(url + `/${result.body.data.data.id}`);
+            expect(deleteResult.statusCode).toBe(200);
+            expect(deleteResult.body.success).toBe(true);
+            expect(deleteResult.body.message).toBe("Deleted successfully");
         })
     })
     describe("Validation", () => {
         test("Invalid id", async () => {
-            const updateResult = await request(app).patch(url + `/abc`);
-            expect(updateResult.statusCode).toBe(400);
-            expect(updateResult.body.success).toBe(false);
-            expect(updateResult.body.message).toBe("Invalid id");
+            const deleteResult = await request(app).patch(url + `/abc`);
+            expect(deleteResult.statusCode).toBe(400);
+            expect(deleteResult.body.success).toBe(false);
+            expect(deleteResult.body.message).toBe("Invalid id");
+        })
+        const id = (env.DATABASE === "mongodb") ? new mongoose.Types.ObjectId().toString() : crypto.randomUUID();
+        test("Invalid id-404", async () => {
+            const deleteResult = await request(app).delete(url + `/${id}`);
+            expect(deleteResult.statusCode).toBe(404);
+            expect(deleteResult.body.success).toBe(false);
+            expect(deleteResult.body.message).toBe("Invalid id");
         })
     })
 })
